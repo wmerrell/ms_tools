@@ -31,28 +31,27 @@ module MsTools
     # also match any file that is explictly specified.
     #
     def clean_imagefile_name(name='')
-      root = Rails.public_path
+      #root = Rails.public_path
+      root = Rails.application.assets.paths.find{|f| f.include? "images" }
       filename = ""
       # Shortcut to handle the most common cases.
-      if FileTest.exist?( File.join( root, "/images/#{name}.png" ) )
-        filename = "/images/#{name}.png"
-      elsif FileTest.exist?( File.join( root, "/images/icons/#{name}.png" ) )
-        filename = "/images/icons/#{name}.png"
+      if FileTest.exist?( File.join( root, "#{name}.png" ) )
+        filename = "#{name}.png"
+      elsif FileTest.exist?( File.join( root, "/icons/#{name}.png" ) )
+        filename = "/icons/#{name}.png"
       else
         # If not, check all
         ["", ".png", ".gif", ".jpg"].each do |ext|
           # Check if full path has been specified
           if FileTest.exist?( File.join( root, name + ext ) )
             filename = name + ext
-          elsif FileTest.exist?( File.join( root, "/images/", name + ext ) )
-            filename = File.join( "/images/", name + ext )
-          elsif FileTest.exist?( File.join( root, "/images/icons/", name + ext ) )
-            filename = File.join( "/images/icons/", name + ext )
+          elsif FileTest.exist?( File.join( root, "/icons/", name + ext ) )
+            filename = File.join( "/icons/", name + ext )
           end
         end
       end
       if filename.blank?
-        filename = "/images/broken.png"
+        filename = "broken.png"
       end
       filename
     end

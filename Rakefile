@@ -8,8 +8,8 @@ begin
     gem.homepage = "http://github.com/wmerrell/ms_tools"
     gem.authors = ["Will Merrell"]
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
-    gem.add_dependency 'nokogiri' #, '~> 1.4.3'
-    gem.add_dependency 'sanitize' #, '~> 1.2.1'
+    gem.add_dependency 'nokogiri'
+    gem.add_dependency 'sanitize'
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
