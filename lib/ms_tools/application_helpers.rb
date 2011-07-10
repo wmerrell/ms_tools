@@ -17,7 +17,7 @@ module MsTools
         flash_to_display = flash[:error]
       end
       messages << content_tag(:div, flash_to_display, :id => "flash-error") unless flash_to_display.blank?
-      raw(messages)
+      raw(messages.join("<br />"))
     end
 
     # Normalizes image file names
